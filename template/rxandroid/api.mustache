@@ -1,0 +1,25 @@
+package {{package}};
+
+import {{modelPackage}}.*;{{#imports}}
+import {{import}};
+{{/imports}}
+
+import java.util.*;
+
+import retrofit.http.*;
+import rx.Observable;
+
+public interface {{classname}} {
+    {{#operations}}
+    /**
+     * <h1>{{summary}}</h1>
+     * {{{apiDescription}}}
+     * {{#parameters}}
+     * @param {{paramName}} {{#paramDescription}}{{paramDescription}}{{/paramDescription}}{{#isEnum}} enum value: {{/isEnum}}{{#enumValues}}{{.}},{{/enumValues}}{{/parameters}}
+     */{{#hasForm}}
+    @FormUrlEncoded{{/hasForm}}
+    @{{httpMethod}}("{{{path}}}")
+    Observable<{{{responseType}}}> {{methodName}}({{#parameters}}@{{paramIn}}({{#inKey}}"{{inKey}}"{{/inKey}}) {{{paramType}}} {{paramName}}{{#hasMore}}, {{/hasMore}}{{/parameters}});
+    
+    {{/operations}}
+}

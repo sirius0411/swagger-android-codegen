@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{a5d94b63-3e22-4681-b0fa-341afc3615a5}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>swagger_codegen.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Standard Python launcher</LaunchProvider>
+    <InterpreterId />
+    <InterpreterVersion />
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <CommandLineArguments>-j http://petstore.swagger.io/v2/swagger.json -l rxandroid</CommandLineArguments>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+    <PtvsTargetsFile>$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets</PtvsTargetsFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="code_generator.py" />
+    <Compile Include="generators\rxandroid_codegen.py" />
+    <Compile Include="generators\android_codegen.py" />
+    <Compile Include="models.py" />
+    <Compile Include="shell.py" />
+    <Compile Include="swagger_codegen.py" />
+    <Compile Include="swagger_parser.py" />
+    <Compile Include="test\util_test.py" />
+    <Compile Include="util.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="template\rxandroid\AndroidManifest.xml.mustache" />
+    <Content Include="template\rxandroid\api.mustache" />
+    <Content Include="template\rxandroid\build.gradle.mustache" />
+    <Content Include="template\rxandroid\model.mustache" />
+    <Content Include="template\rxandroid\NetManager.mustache" />
+    <Content Include="template\rxandroid\proguard-rules.pro.mustache" />
+    <Content Include="template\android\AndroidManifest.xml.mustache" />
+    <Content Include="template\android\api.mustache" />
+    <Content Include="template\android\build.gradle.mustache" />
+    <Content Include="template\android\CallbackMap.mustache" />
+    <Content Include="template\android\model.mustache" />
+    <Content Include="template\android\network.mustache" />
+    <Content Include="template\android\proguard-rules.pro.mustache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="generators" />
+    <Folder Include="template\" />
+    <Folder Include="template\android" />
+    <Folder Include="template\rxandroid\" />
+    <Folder Include="test" />
+  </ItemGroup>
+  <Import Project="$(PtvsTargetsFile)" Condition="Exists($(PtvsTargetsFile))" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="!Exists($(PtvsTargetsFile))" />
+</Project>

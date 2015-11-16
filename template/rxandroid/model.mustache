@@ -1,0 +1,35 @@
+package {{package}};
+
+{{#imports}}import {{import}};
+{{/imports}}
+
+import com.google.gson.annotations.SerializedName;
+
+{{#description}}/**
+ * {{description}}
+ **/
+{{/description}}
+public class {{classname}} {
+    {{#fields}}
+    {{#description}}/**
+     * {{{description}}}{{#format}}
+     * {format = {{{format}}}}{{/format}}{{#isEnum}}
+     * enum values:{{/isEnum}}{{#enum}}
+     * -- {{.}}{{/enum}}
+     **/{{/description}}
+    @SerializedName("{{baseName}}")
+    private {{{datatype}}} {{name}}{{#defaultValue}} = {{defaultValue}}{{/defaultValue}};
+
+    {{/fields}}
+    {{#fields}}
+
+    public {{{datatype}}} {{getter}}() {
+        return {{name}};
+    }
+
+    public void {{setter}}({{{datatype}}} {{name}}) {
+        this.{{name}} = {{name}};
+    }
+
+    {{/fields}}
+}
